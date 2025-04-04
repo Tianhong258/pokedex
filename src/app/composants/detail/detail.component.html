@@ -1,0 +1,148 @@
+<app-navbar [titre]="titre1+titre2"></app-navbar>
+<div class="container">
+<div class="contenu-gauche">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title><strong>Nom(s) : </strong></mat-card-title>
+    </mat-card-header>
+      <mat-card-content>
+        @if(pokemon.nomJaponais){
+          Nom Japonais : {{pokemon.nomJaponais}}
+        }
+      </mat-card-content>
+    <mat-card-content>
+        @if(pokemon.nomChinois){
+          Nom Chinois : {{pokemon.nomChinois}}
+        }
+      </mat-card-content>
+  </mat-card>
+
+
+
+@if(pokemon.types){
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title><strong>Type(s) : </strong></mat-card-title>
+  </mat-card-header>
+  @for(pokeType of pokemon.types; track pokeType.type?.name; let i = $index){
+    <mat-card-content>
+          Type {{i+1}}:  {{pokeType.type?.name}}
+    </mat-card-content>
+  }
+</mat-card>
+}
+
+@if(pokemon.generation){
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title><strong>Génération : </strong></mat-card-title>
+    </mat-card-header> 
+      <mat-card-content>{{pokemon.generation}}</mat-card-content>
+  </mat-card>
+}
+
+<app-evolution [urlChaine]="urlChaine"></app-evolution>
+
+@if(pokemon.description){
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title><strong>Description : </strong></mat-card-title>
+    </mat-card-header> 
+      <mat-card-content>{{pokemon.description}}</mat-card-content>
+  </mat-card>
+}
+@if(pokemon.statistiques){
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title><strong>Statistiques :</strong></mat-card-title>
+    </mat-card-header> 
+      <mat-card-content>
+          @for(pokeStats of pokemon.statistiques; track $index; let i = $index){
+              <div style="display: flex; gap: 10px; align-items: center;">
+                {{this.nomStatistique[i]}}
+                <mat-progress-bar style="width: 50%;" mode="determinate" [value]="(pokeStats.base_stat/255) * 100"></mat-progress-bar>
+                {{pokeStats.base_stat}}/255
+              </div>
+            }
+      </mat-card-content>
+  </mat-card>
+}
+</div>
+
+
+<div class="contenu-droite">
+  @if(pokemon.sprite?.other?.showdown?.front_default){
+    <mat-card appearance="outlined">
+      <mat-card-content class="card-content">
+        <img class="photo-bouge" src={{pokemon.sprite?.other?.showdown?.front_default}} alt="photo front du pokémon qui bouge"/>
+      </mat-card-content>
+    </mat-card>
+  }
+
+
+@if(pokemon.sprite){
+<mat-card appearance="outlined">
+<mat-card-header>
+  <mat-card-title><strong>Silhouettes : </strong></mat-card-title>
+</mat-card-header> 
+<mat-card-content>
+@if(pokemon.sprite.front_default){
+  <img class = "photo-bouge-pas" src = {{pokemon.sprite.front_default}} alt="photo front du pokémon"/>
+}
+@if(pokemon.sprite.back_default){
+  <img class = "photo-bouge-pas" src = {{pokemon.sprite.back_default}} alt="photo back du pokémon"/>
+}
+</mat-card-content>
+
+<mat-card-content>
+@if(pokemon.sprite.front_female){
+<img  class = "photo-bouge-pas" src = {{pokemon.sprite.front_female}} alt="photo front female du pokémon"/>
+}
+@if(pokemon.sprite.back_female){
+<img  class = "photo-bouge-pas" src = {{pokemon.sprite.back_female}} alt="photo back female du pokémon"/>
+}
+</mat-card-content>
+<mat-card-content>
+@if(pokemon.sprite.front_shiny){
+<img class = "photo-bouge-pas" src = {{pokemon.sprite.front_shiny}} alt="photo front shiny du pokémon"/>
+}
+@if(pokemon.sprite.back_shiny){
+<img class = "photo-bouge-pas" src = {{pokemon.sprite.back_shiny}} alt="photo back shiny du pokémon"/>
+}
+</mat-card-content>
+<mat-card-content>
+@if(pokemon.sprite.front_shiny_female){
+<img class = "photo-bouge-pas" src = {{pokemon.sprite.front_shiny_female}} alt="photo front shiny female du pokémon"/>
+}
+@if(pokemon.sprite.back_shiny_female){
+<img class = "photo-bouge-pas" src = {{pokemon.sprite.back_shiny_female}} alt="photo back du pokémon"/>
+}
+</mat-card-content>
+</mat-card>
+}
+</div>
+</div>
+
+
+@if(pokemon.attaques){
+<h2>Attaques</h2>
+<div style="width: 70%; justify-self: center;">
+<mat-accordion style="width: 100%;">
+@for(pokemonAttaque of pokemon.attaques; track $index; let i = $index){
+  <mat-expansion-panel (opened)="afficherAttaque(i)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ i + 1 }} </mat-panel-title>
+      <mat-panel-description>
+        {{pokemonAttaque.move?.name}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <p>Nom :  {{pokemonAttaque.move?.name}} </p>
+      <p>Type :  {{pokemonAttaque.attaquesDetail?.type?.name}} </p>
+      <p>Puissance :  {{pokemonAttaque.attaquesDetail?.power}}</p>
+      <p>Précision : {{pokemonAttaque.attaquesDetail?.accuracy}}</p>
+      <p>Dommage :  {{pokemonAttaque.attaquesDetail?.damage_class?.name}} </p>
+  </mat-expansion-panel>
+}
+</mat-accordion>
+</div>
+}

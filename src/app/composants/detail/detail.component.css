@@ -1,0 +1,48 @@
+table {
+    width: 300px; 
+    height: 300px;
+}
+h1 {
+  background-color: #e91e63; /* Fond rose */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: 0;
+  font-size: 2rem;
+  border-radius: 8px;
+}
+
+h2{
+  display: flex;
+  justify-content: center;
+}
+.container{
+    display: flex;
+    margin: 5%;
+    margin-bottom: 2%;
+    gap: 3%;
+    justify-content: center;
+}
+.photo-bouge {
+    width: 130px;
+    height: 130px;
+  }
+
+  .photo-bouge-pas {
+    width: 120px;
+    height: 120px;
+  }
+ 
+  .card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;  /* Assurez-vous que le contenu du mat-card occupe tout l'espace disponible */
+  }
+  
+  .photo-bouge {
+    max-width: 100%;  /* S'assure que l'image ne dépasse pas du conteneur */
+    max-height: 100%; /* S'assure que l'image ne dépasse pas du conteneur */
+    object-fit: contain; /* Garder les proportions de l'image sans déformation */
+  }
+  

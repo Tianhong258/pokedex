@@ -1,0 +1,240 @@
+/* Style global pour la page */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  /* Header rose */
+  h1 {
+    background-color: #e91e63; /* Fond rose */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+    border-radius: 8px;
+  }
+  
+  /* Style pour le conteneur des sélecteurs */
+  .select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Espace entre les deux menus déroulants */
+    margin-top: 20px;
+  }
+  
+  
+  /* Styles pour les éléments Pokémon */
+  .grid-pokemon {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;  /* Augmente l'espace entre les Pokémon */
+    justify-items: center;
+    padding-top: 20px;  /* Espacement autour de la grille */
+    padding-bottom: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+
+  }
+
+  .grid-pokemon .pokemon-card {
+    width: 200px; /* Largeur des cartes Pokémon (ajustée pour plus de taille) */
+    height: 200px; /* Hauteur fixe pour garder la forme carrée */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour l'effet visuel */
+    overflow: hidden; /* Assure que l'image ne déborde pas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out; /* Transition pour l'effet de zoom */
+    margin: 10%;
+}
+
+a {
+  text-decoration: none; /* Enlève le soulignement */
+  color: inherit; /* Garde la couleur héritée du parent (par exemple, la couleur du texte) */
+}
+
+/* Si tu veux que le lien ait un effet au survol, tu peux ajouter un changement de couleur, mais sans soulignement */
+a:hover {
+  color: #e91e63; /* Exemple de couleur au survol (rose, comme ton thème) */
+}
+
+/* Empêche le changement de couleur après clic */
+a:visited {
+  color: inherit; /* Couleur inchangée après avoir cliqué */
+}
+  
+  
+  /* Style pour le paginator */
+  mat-paginator {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  mat-paginator .mat-paginator-range-actions {
+    display: none;
+  }
+  
+  mat-paginator button {
+    background-color: #e91e63; /* Couleur rose */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  mat-paginator button:hover {
+    background-color: #c2185b; /* Couleur rose plus foncé pour le hover */
+  }
+  
+  /* Style pour les boutons et liens */
+  a.mat-button {
+    background-color: #e91e63;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  a.mat-button:hover {
+    background-color: #c2185b;
+  }
+  
+  /* Conteneur principal de la barre de recherche */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #f8bbd0; /* Couleur rose claire */
+  padding: 10px;
+  border-radius: 25px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajouter une légère ombre */
+}
+
+/* Champ de texte de la recherche */
+.search-input {
+  border: none;
+  outline: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  flex-grow: 1;
+  border-radius: 25px;
+  background-color: #ffffff; /* Blanc pour l'intérieur */
+}
+
+.search-input::placeholder {
+  color: #9e9e9e; /* Couleur du texte du placeholder */
+}
+
+/* Bouton de recherche */
+.search-button {
+  background-color: transparent;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #f78eb3; /* Couleur rose (par défaut dans Angular) */
+}
+
+/* Icône de recherche */
+.material-icons {
+  font-size: 24px;
+}
+
+/* Effet de survol sur le bouton */
+.search-button:hover {
+  color: #d81b60; /* Changer de couleur au survol */
+}
+/* Conteneur principal du formulaire */
+.search-form {
+  background-color: #fce4ec; /* Rose clair */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Etirer tous les éléments à la même hauteur */
+  min-height: 10%;
+  max-width: 40%; /* Limite la largeur */
+  margin: 20px auto; /* Centrer le formulaire */
+}
+
+/* Groupes de champs du formulaire */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+/* Label du champ */
+.form-label {
+  font-size: 16px;
+  color: #d81b60; /* Rose foncé pour le label */
+  font-weight: bold;
+  margin-top: 3%;
+  margin-bottom: 10px;
+}
+
+/* Conteneur pour l'input et le bouton (aligner horizontalement) */
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacement entre l'input et le bouton */
+}
+
+/* Champ de saisie */
+.form-control {
+  flex-grow: 1; /* L'input prend toute la largeur disponible */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #e1bee7; /* Bordure rose clair */
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+/* Effet de survol du champ */
+.form-control:focus {
+  border-color: #f50057; /* Bordure rose vif lors du focus */
+  outline: none;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+  padding: 10px 20px;
+  margin: 1%;
+  margin-bottom: 2%;
+  font-size: 16px;
+  border: none;
+  background-color: #f50057; /* Changer la couleur du bouton ici (ex: vert) */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Effet de survol sur le bouton */
+.submit-btn:hover {
+  background-color: #f50057; /* Un vert un peu plus foncé */
+}
+
+/* Désactivation du bouton */
+.submit-btn:disabled {
+  background-color: #e1bee7;
+  cursor: not-allowed;
+}
+
+/* Message d'erreur */
+.error-message small {
+  color: #e57373; /* Couleur rose clair pour l'erreur */
+  font-size: 12px;
+}

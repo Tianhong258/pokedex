@@ -1,0 +1,206 @@
+/* Style global pour la page */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style du titre */
+
+/* Style général du formulaire */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Espacement entre les labels et les champs */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Style des champs de saisie (input, textarea) */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Assure que les éléments restent dans le cadre */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #e91e63;
+  outline: none;
+  box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+}
+
+/* Style des erreurs */
+small {
+  color: #e91e63; /* Couleur rouge pour les erreurs */
+  font-size: 0.875rem;
+}
+
+.pokemon-dynamique {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.pokemon-dynamique img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Style pour les boutons */
+button {
+  background-color: #e91e63; /* Rose */
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Ajuste le padding pour un bouton plus large */
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #c2185b; /* Couleur rose plus foncée au survol */
+}
+
+button:disabled {
+  background-color: #f4f4f4;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Espacement pour les boutons d'ajout */
+button[type="button"] {
+  background-color: #fff;
+  color: #e91e63;
+  border: 1px solid #e91e63;
+}
+
+button[type="button"]:hover {
+  background-color: #e91e63;
+  color: white;
+}
+
+/* Style pour les éléments de l'équipe */
+.form-array {
+  margin-top: 10px;
+}
+
+label span {
+  font-weight: normal;
+  color: #e91e63;
+}
+
+/* Style pour les champs invalides */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #f44336; /* Rouge pour les champs invalides */
+}
+
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched {
+  border-color: #4caf50; /* Vert pour les champs valides */
+}
+
+/* Espacement général pour les éléments de formulaire */
+form div {
+  margin-bottom: 20px;
+}
+
+/* Style pour les sections avec des champs */
+.form-array {
+  margin-top: 20px;
+}
+
+.form-array div {
+  margin-bottom: 10px;
+}
+
+/* Première carte centrée en haut */
+.card-principale {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur pour les cartes de l'équipe : Afficher en une seule ligne et centrer */
+.equipe-cards {
+  display: flex;
+  justify-content: center; /* Centre les éléments horizontalement */
+  align-items: center; /* Centre les éléments verticalement (utile si le conteneur a plus de hauteur) */
+  gap: 20px; /* Espacement entre les cartes */
+  margin: 20px auto;
+  flex-wrap: wrap; /* Permet d'afficher plusieurs lignes si la largeur de l'écran est trop petite */
+}
+
+/* Style pour chaque carte Pokémon */
+.card-pokemon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  width: 150px; /* Largeur fixe pour rendre les cartes carrées */
+  height: 150px; /* Hauteur fixe pour rendre les cartes carrées */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  /* Appliquer un aspect ratio pour rendre les cartes carrées si nécessaire */
+  aspect-ratio: 1; /* Ajout de cette propriété pour garantir un rapport largeur/hauteur de 1 */
+}
+
+/* Image du Pokémon dans la carte */
+.image-pokemon {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Ajouter des marges et des espacements dans la carte */
+.card-pokemon mat-card-content {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Pour rendre les cartes responsives (1 carte par ligne sur mobile, 3 cartes sur desktop) */
+@media screen and (max-width: 600px) {
+  .equipe-cards {
+      flex-direction: column; /* Afficher les cartes en colonne sur petits écrans */
+      align-items: center; /* Centrer les éléments verticalement */
+  }
+
+  .card-pokemon {
+      width: 100%; /* Les cartes prennent 100% de la largeur sur mobile */
+      height: auto; /* Laissez la hauteur ajuster selon le contenu */
+  }
+}

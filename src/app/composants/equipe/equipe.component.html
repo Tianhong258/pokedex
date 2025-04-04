@@ -1,0 +1,89 @@
+<app-navbar [titre]="titre"></app-navbar>
+@if(!isConstruit){
+<form [formGroup]="equipeForm" (ngSubmit)="soumettre()">
+    <label for="nom">Nom d'équipe: </label>
+    <input type="text" formControlName="nomEquipe" id="nom"/>
+    @if(equipeForm.get('nomEquipe')?.invalid && equipeForm.get('nomEquipe')?.touched){
+        @if(equipeForm.get('nomEquipe')?.hasError('required')){
+            <div><small>Le nom d'équipe est obligatoire ! </small></div>
+        }
+    }
+    <br/>
+    <label for="pseudo">Pseudo de créateur: </label>
+    <input type="text" formControlName="pseudo" id="pseudo"/>
+    @if(equipeForm.get('pseudo')?.invalid && equipeForm.get('pseudo')?.touched){
+        @if(equipeForm.get('pseudo')?.hasError('required')){
+            <div><small>Le pseudo de créateur est obligatoire ! </small></div>
+        }
+        @if(equipeForm.get('pseudo')?.hasError('maxlength')){
+            <div><small>Le pseudo de créateur doit être 100 caractères maximum ! </small></div>
+        }
+    }
+    <br/>
+
+    <label for="mail">Mail de créateur: </label>
+    <input type="email" formControlName="mail" id="mail"/>
+    @if(equipeForm.get('mail')?.invalid && equipeForm.get('mail')?.touched){
+        @if(equipeForm.get('mail')?.hasError('required')){
+            <div><small>Le mail de créateur est obligatoire !</small></div>
+        }
+        @if(equipeForm.get('mail')?.hasError('email')){
+            <div><small>Le format de mail est invalide ! </small></div>
+        }
+    }
+    <br/>
+
+    <label for="strategie">Stratégie de jeu : </label>
+    <textarea formControlName="strategie" id="strategie"></textarea>
+    <br>
+
+    <label>Nembres d'équipe : </label>
+    <button type="button" (click)="ajouterPokemon()">Ajouter Un Pokémon</button>
+    <div formArrayName="pokemons">
+        @for(pokemon of pokemons.controls; track $index; let j = $index){
+            @if( j < 6 ){
+                @if(pokemon.valid){
+                    <p>Membre {{j +1 }}: {{pokemon.value}}</p>
+                    <button type="button" (click)="supprimerPokemon(j)">Supprimer</button>
+                }
+                @if(pokemon.invalid){
+                    <label for={{j+1}}>Pokémon <span>{{j+1}}</span> : </label>
+                    <input type="text" [formControlName]="j" id={{j+1}}>
+                    @if(pokemon.touched && pokemon.hasError('forbiddenNomPokemon')){
+                        <div><small>Le nom de pokémon est invalide ! </small></div>
+                    }
+                }
+            }  
+        }
+    </div>
+    @if(membreEquipe){
+        <div class="pokemon-dynamique">
+        @if(membreEquipe.sprite){
+            <img style="display: flex; justify-content: center; "[src]="membreEquipe.sprite.other.showdown.front_default" alt="Illustration de {{ membreEquipe.nomFrancais }}">
+        }
+        @if(membreEquipe.nomFrancais){
+            <p>{{membreEquipe.nomFrancais}}</p>
+        }
+        </div>
+    }
+    <button type="submit" [disabled]="equipeForm.invalid">Soumettre</button>
+</form>
+}
+
+@if(isConstruit){
+    <mat-card class="card-principale"  appearance="outlined">
+          <mat-card-content><strong>Nom d'équipe : </strong>{{this.equipeForm.value.nomEquipe}}</mat-card-content>
+          <mat-card-content><strong>Pseudo du créateur : </strong>{{this.equipeForm.value.pseudo}}</mat-card-content>
+          @if(this.equipeForm.value.strategie){
+            <mat-card-content><strong>Stratégie du jeu : </strong>{{this.equipeForm.value.strategie}}</mat-card-content>
+          }
+    </mat-card>
+    <div class="equipe-cards">
+        @for(nom of this.equipeNom; track $index; let i = $index){
+        <mat-card  class="card-pokemon" appearance="outlined">
+            <mat-card-content><img class="image-pokemon" [src]="this.equipeUrl[i]" alt="Illustration de {{ nom }}"></mat-card-content>
+            <mat-card-content>{{nom}}</mat-card-content>
+        </mat-card>
+        }
+    </div>
+}   

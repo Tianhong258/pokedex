@@ -1,0 +1,48 @@
+<app-navbar [titre]="titre"></app-navbar>
+
+<div class="select">
+    <form [formGroup]="form" class="search-form">
+      <mat-form-field>
+        <mat-label>Génération</mat-label>
+        <mat-select (selectionChange)="selectGeneration($event)" formControlName="selectedGeneration">
+          @for (generation of generations; track generation) {
+        <mat-option [value]="generation.value">{{generation.label}}</mat-option>
+      }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+  <mat-label>Type</mat-label>
+  <mat-select (selectionChange)="selectType($event)" formControlName="selectedType">
+      @for (type of types; track type) {
+      <mat-option [value]="type.value">{{type.label}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+</form>
+
+<form [formGroup]="chercheForm" (ngSubmit)="cherchePokemon()" class="search-form">
+  <div  class="form-group">
+  <label for="cherchePokemonParNom" class="form-label">Chercher par Nom : </label>
+  <input type="text" formControlName="cherchePokemonParNom" id="cherchePokemonParNom" class="form-control"/>
+  @if(chercheForm.get('cherchePokemonParNom')?.invalid && chercheForm.get('cherchePokemonParNom')?.touched){
+    @if(chercheForm.get('cherchePokemonParNom')?.hasError('forbiddenNomPokemon')){
+        <div class="error-message"><small>Le nom de pokémon est invalide ! </small></div>
+    }
+  }
+  </div>
+  <button class="submit-btn" type="submit" [disabled]="chercheForm.invalid">Soumettre</button>
+</form>
+</div>
+
+<div class="grid-pokemon">
+  @for(poke of tabPokemon; track poke.name; let i = $index){
+  <mat-card class="pokemon-card" appearance="outlined">
+      <mat-card-content> <a [routerLink]="['./detail', poke.id]"><img style="width: 100px; height: 100px;" [src]="poke.sprites.other.showdown.front_default" alt="Illustration de {{ poke.name }}"></a></mat-card-content>
+      <mat-card-content> <a [routerLink]="['./detail', poke.id]">{{poke.id}} - {{poke.name}}</a></mat-card-content>
+  </mat-card>
+  }
+</div>
+<mat-paginator [length]="longueListPokemon" [pageSize]=""
+               (page)="getPaginatorData($event)" [pageSizeOptions]="[20]"
+               showFirstLastButtons="false">
+</mat-paginator>
